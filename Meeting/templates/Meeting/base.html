@@ -1,0 +1,371 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{%static 'Meeting/main.css'%}">
+
+    {%if title%}
+      <title>SBPB</title>
+    {%else%}
+      <title>  </title>
+    {%endif%}
+
+  </head>
+  <body style="background-color:#E0E0E0">
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md fixed-top" style="background-color:#383838">
+        <div class="container">
+          <a class="navbar-brand text-light" href="{% url 'meeting-home' %}">The Rod - Super Bowl Prop Betting</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'meeting-home' %}">Home</a>
+              <!--<a class="nav-item nav-link" href="{% url 'meeting-about' %}">About</a>-->
+              {%if current_user%}
+                <a class="nav-item nav-link" href="{% url 'meeting-home' %}">Logged in as {{ current_user }}</a>
+              {%endif%}
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              {%if current_user%}
+                <a class="nav-item nav-link" data-toggle="modal" data-target="#modal-logout">Logout</a>
+                <a class="nav-item nav-link" data-toggle="modal" data-target="#modal-update">Repsonces</a>
+              {%else%}
+                <a class="nav-item nav-link" data-toggle="modal" data-target="#modal-login">Login</a>
+              {%endif%}
+
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main" class="container">
+
+      <!-- Modal -->
+      <div id="modal-login" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Login</h4>
+            </div>
+            <div class="modal-body">
+              <form   method="POST" role="form" >
+                {% csrf_token %}
+                <div class="tab-content">
+                  <div class="tab-pane active" role="tabpanel" id="step1">
+                    <div class="mobile-grids">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>Name:</p>
+                        </div>
+                        <div class="col-md-7">
+                          <input type="text" name="user" class="mobile-text" value="{{current_user}}">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>Password:</p>
+                        </div>
+                        <div class="col-md-7">
+                          <input type="text" name="pass" class="mobile-text" value="">
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="list-inline pull-right">
+                      <!--<input type="hidden" name="responceType" value="login"/>-->
+                      <input type="submit" value="submit"/>
+                    </ul>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </form>
+
+
+
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="modal-update" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Repsonces</h4>
+            </div>
+            <div class="modal-body">
+              <form   method="POST" role="form" >
+                {% csrf_token %}
+                <div class="tab-content">
+                  <div class="tab-pane active" role="tabpanel" id="step1">
+                    <div class="mobile-grids">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>Coin Flip:</p>
+                        </div>
+                        <div class="col-md-7">
+                          {%if lock1%}
+                            <p>{{ coin_flip }}</p>
+                          {%else%}
+                            <input type="text" name="coin_flip" class="mobile-text" value="{{ coin_flip }}">
+                          {%endif%}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>First Commercial:</p>
+                        </div>
+                        <div class="col-md-7">
+                          {%if lock1%}
+                            <p>{{ commercial_1 }}</p>
+                          {%else%}
+                            <input type="text" name="commercial_1" class="mobile-text" value="{{ commercial_1 }}">
+                          {%endif%}
+
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>second option:</p>
+                        </div>
+                        <div class="col-md-7">
+                          {%if lock1%}
+                            <p>{{ commercial_2 }}</p>
+                          {%else%}
+                            <input type="text" name="commercial_2" class="mobile-text" value="{{ commercial_2 }}">
+                          {%endif%}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>First Touchdown (not QB):</p>
+                        </div>
+                        <div class="col-md-7">
+                          {%if lock1%}
+                            <p>{{ firstTD }}</p>
+                          {%else%}
+                            <input type="text" name="firstTD" class="mobile-text" value="{{ firstTD }}">
+                          {%endif%}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>Defensive Score (team):</p>
+                        </div>
+                        <div class="col-md-7">
+                          {%if lock1%}
+                            <p>{{ defensiveScorer }}</p>
+                          {%else%}
+                            <input type="text" name="defensiveScorer" class="mobile-text" value="{{ defensiveScorer }}">
+                          {%endif%}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>Q1 (Pats - Rams)</p>
+                        </div>
+                        <div class="col-md-7">
+                          {%if lock1%}
+                            <p>{{ scoreQ1 }}</p>
+                          {%else%}
+                          <input type="text" name="scoreQ1" class="mobile-text" value="{{ scoreQ1 }}">
+                          {%endif%}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>Q2 (Pats - Rams)</p>
+                        </div>
+                        <div class="col-md-7">
+                          {%if lock2%}
+                            <p>{{ scoreQ2 }}</p>
+                          {%else%}
+                            <input type="text" name="scoreQ2" class="mobile-text" value="{{ scoreQ2 }}">
+                          {%endif%}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>Q3 (Pats - Rams)</p>
+                        </div>
+                        <div class="col-md-7">
+                          {%if lock3%}
+                            <p>{{ scoreQ3 }}</p>
+                          {%else%}
+                            <input type="text" name="scoreQ3" class="mobile-text" value="{{ scoreQ3 }}">
+                          {%endif%}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>Q4 (Pats - Rams)</p>
+                        </div>
+                        <div class="col-md-7">
+                          {%if lock4%}
+                            <p>{{ scoreQ4 }}</p>
+                          {%else%}
+                            <input type="text" name="scoreQ4" class="mobile-text" value="{{ scoreQ4 }}">
+                          {%endif%}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p> Winner :</p>
+                        </div>
+                        <div class="col-md-7">
+                          {%if lock1%}
+                            <p>{{ winner }}</p>
+                          {%else%}
+                            <input type="text" name="winner" class="mobile-text" value="{{ winner }}">
+                          {%endif%}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>Over/Under (57):</p>
+                        </div>
+                        <div class="col-md-7">
+                          {%if lock1%}
+                            <p>{{ overUnder }}</p>
+                          {%else%}
+                            <input type="text" name="overUnder" class="mobile-text" value="{{ overUnder }}">
+                          {%endif%}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>Gatorade Color:</p>
+                        </div>
+                        <div class="col-md-7">
+                          {%if lock1%}
+                            <p>{{ gatorade }}</p>
+                          {%else%}
+                            <input type="text" name="gatorade" class="mobile-text" value="{{ gatorade }}">
+                          {%endif%}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <p>MVP:</p>
+                        </div>
+                        <div class="col-md-7">
+                          {%if lock1%}
+                            <p>{{ MVP }}</p>
+                          {%else%}
+                            <input type="text" name="MVP" class="mobile-text" value="{{ MVP }}">
+                          {%endif%}
+                        </div>
+                      </div>
+                    </div>
+                    <input type="hidden" name="responceType" value="responce"/>
+                    <ul class="list-inline pull-right">
+
+                      <input type="submit" value="submit"/>
+                    </ul>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </form>
+
+
+
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="modal-logout" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Login</h4>
+            </div>
+            <div class="modal-body">
+              <form   method="POST" role="form" >
+                {% csrf_token %}
+                <div class="tab-content">
+                  <div class="tab-pane active" role="tabpanel" id="step1">
+                    <div class="mobile-grids">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <p>Are you sure you would like to logout?</p>
+                        </div>
+                      </div>
+                    </div>
+                    <input type="hidden" name="responceType" value="lo"/>
+                    <ul class="list-inline pull-right">
+
+                      <input type="submit" value="Logout"/>
+                    </ul>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </form>
+
+
+
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9">
+
+          {% block betTable %}{% endblock %}
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div  class="col-md-2">
+          {% block leaderBoard %}{% endblock %}
+        </div>
+      </div>
+    </main>
+
+
+    <!---->
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  </body>
+</html>

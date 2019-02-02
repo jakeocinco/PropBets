@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "aesthetic-nova-229319",
+  "private_key_id": "ecf8c4e2c9a695b8857959f4378344274780d0a5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCmvznUNxNBv2dJ\nyeZOMnkC9gvv/oB5+j6wPuJz0LtSRkX4Tnsu1bmIiJaPvKaAIReDui05XPRPDFXI\nVf7uxMCGXi4j4bd6ALsWZokwLphlstimA4uqeM3feu/pcyMAkgRAwo30sfAemxKQ\nzXYXxuKaUVX12iD6KfTZddN8SXBCgNUJoaPe5PdoBR/XuPzH2GQYkjjB9oc+Sl3y\nUEZ7/HkEHUQsXoN2eLE+8x7D0TvO2Nn6xgdwKLQHuGH3dRa9V9LAaPsotslwcPTU\nURGVbLF9mhAh9mFilvj2GlKOltviCj//jzlitC2JC+h3c360X0rZEmXoaAql8lq8\njh2U9mHBAgMBAAECggEARsgauKouWvTwV+LECAKl2qtuMtByYhTngnIXN3lt4sVg\n00AhSya/TKVKYDaA6Rfi/vBLXTPHozyFt3ZFsr5DSWZ2KJYah8gCosYgyxqkZ1st\nWv9bTKBeJ9TsPUk6HPZepszPbIUR/DPwhBYrYHl03HPVTPjskbS4soyxGuujox6U\ncbv3k5owMlFBnodbWHmYGdI0B+pxsmOai0us4pSbOMp8b+nHgNfbujaDyYFeeP6I\nt2x7jfjhcC9QHNtj4FRJ4ZODF/EfED+gPjRnAHdg5wIEGNeJEtQyMGklFlqpay5Q\nOIeX/Yk2S6D8/BUMvyP9R5HeiKY3oerbJRyp1s4YbwKBgQDZAWXP7/KAORIktmmQ\n/w4Py0fSq6JHI3mvN2VhfdIJzqvYkGFcW5poqwo30azyLy7mRqVZEQygmF3gIbxE\n02Wds9SE6b+jTeKnie1/F3mmV5lCiOJpsx+F/G5gzDqgbisLDo9d6Us/jjurFPeA\nCa7c0OF/5aTQbpQTb5HjKNGMjwKBgQDEtdtLTawCzH2puZtEPCPktmUlcgdvJwTj\nGcWHA2NY24y2P8bF86sU+dS0DsEl66VtWipTQa6D/tO1/u8S6VLOHpI4OBbkTvM1\nXv7y+TMqYIjKvMWjrOWOwEZMEJceeyO1btA2fec9gaVPgfusB4l38TPdf6Sfevxp\nq9DDHdH0rwKBgHeeu5655/UigIvYOa0By6CNL9RDZDrOpV8erDXng4aAdF32iJS+\nsgkMb5+BZ1JBDBtHyhGkwk8sbmMEdaGC3jrmTDnQGCFO56fu8gniyN4W35a7mgMm\nCDR1h+q36YFR+UwpBIKB/UbVgrK15hCgRdHXGtbDoex7aAimscaEU66lAoGAWRaH\nn74opgfY7bI6yJd4JhAZFPFkvolsZDH6zJ/TMZ4VR0DxFBu8Ir7W/0kjXrovbKwG\nOTipAey6E1XHDsiPEPy1ejKk43eCHGzOiFomOw4HRdJirDMUsCcSb0agOlTIolXy\nhItW2/tIVA7pXUr4jlK2C53Qf83iXTVMUeHCgc8CgYBXmF7qms+qq199eg6ImNZc\nO19BZ9XqggtncOXKCZMG00ycIZhuHLtZYvY6+Th8s1tJiQbRaXVSbfH6kOvrcpvG\nv0Iy6Z5X2YSA1CumByeoUWuO8oLCz9TiDumPK3N5l/0SIVRexs+YIs6gqVe920gI\nlZ0NOppiLnoyDord15QOJQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "superbowl@aesthetic-nova-229319.iam.gserviceaccount.com",
+  "client_id": "104441103317067967200",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/superbowl%40aesthetic-nova-229319.iam.gserviceaccount.com"
+}
